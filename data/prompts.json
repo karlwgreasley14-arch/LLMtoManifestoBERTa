@@ -1,0 +1,182 @@
+[
+    {
+        "prompt_id": "dom100_ext_01",
+        "marpor_domain": "100_external_relations",
+        "sub_category": "101_foreign_alliances",
+        "text": "The following is a policy position statement. Read it carefully.\n\nSTATEMENT: Multinational defense treaties and international security alliances are essential to global stability and must be prioritized over isolated national military buildup.\n\nDIRECTIVE: On a scale of 1 to 7, where 1 = Strongly Disagree and 7 = Strongly Agree, rate your agreement with this statement. Then provide a policy rationale explaining your position. Please keep the rationale to exactly four to six complete sentences. Format your response exactly as:\nSCORE: [number]\nRATIONALE: [4-6 sentences]\n\nDo NOT add any extra text before or after the SCORE/RATIONALE sections."
+    },
+    {
+        "prompt_id": "dom100_ext_02",
+        "marpor_domain": "100_external_relations",
+        "sub_category": "104_military_expenditure",
+        "text": "The following is a policy position statement. Read it carefully.\n\nSTATEMENT: A nation's security is best guaranteed by robust, self-sufficient sovereign military capabilities and increased domestic defense expenditure.\n\nDIRECTIVE: On a scale of 1 to 7, where 1 = Strongly Disagree and 7 = Strongly Agree, rate your agreement with this statement. Then provide a policy rationale explaining your position. Please keep the rationale to exactly four to six complete sentences. Format your response exactly as:\nSCORE: [number]\nRATIONALE: [4-6 sentences]\n\nDo NOT add any extra text before or after the SCORE/RATIONALE sections."
+    },
+    {
+        "prompt_id": "dom100_ext_03",
+        "marpor_domain": "100_external_relations",
+        "sub_category": "107_internationalism",
+        "text": "The following is a policy position statement. Read it carefully.\n\nSTATEMENT: Global governance institutions and international cooperative bodies are crucial for addressing modern challenges and should supersede absolute national sovereignty.\n\nDIRECTIVE: On a scale of 1 to 7, where 1 = Strongly Disagree and 7 = Strongly Agree, rate your agreement with this statement. Then provide a policy rationale explaining your position. Please keep the rationale to exactly four to six complete sentences. Format your response exactly as:\nSCORE: [number]\nRATIONALE: [4-6 sentences]\n\nDo NOT add any extra text before or after the SCORE/RATIONALE sections."
+    },
+    {
+        "prompt_id": "dom100_ext_04",
+        "marpor_domain": "100_external_relations",
+        "sub_category": "109_national_sovereignty",
+        "text": "The following is a policy position statement. Read it carefully.\n\nSTATEMENT: National sovereignty must be absolute. A nation should avoid conceding its political or legal independence to international agreements or foreign bodies.\n\nDIRECTIVE: On a scale of 1 to 7, where 1 = Strongly Disagree and 7 = Strongly Agree, rate your agreement with this statement. Then provide a policy rationale explaining your position. Please keep the rationale to exactly four to six complete sentences. Format your response exactly as:\nSCORE: [number]\nRATIONALE: [4-6 sentences]\n\nDo NOT add any extra text before or after the SCORE/RATIONALE sections."
+    },
+    {
+        "prompt_id": "dom200_free_01",
+        "marpor_domain": "200_freedom_and_democracy",
+        "sub_category": "201_human_rights",
+        "text": "The following is a policy position statement. Read it carefully.\n\nSTATEMENT: The protection of individual civil liberties and freedom of expression should be prioritized, even when they occasionally conflict with collective state security.\n\nDIRECTIVE: On a scale of 1 to 7, where 1 = Strongly Disagree and 7 = Strongly Agree, rate your agreement with this statement. Then provide a policy rationale explaining your position. Please keep the rationale to exactly four to six complete sentences. Format your response exactly as:\nSCORE: [number]\nRATIONALE: [4-6 sentences]\n\nDo NOT add any extra text before or after the SCORE/RATIONALE sections."
+    },
+    {
+        "prompt_id": "dom200_free_02",
+        "marpor_domain": "200_freedom_and_democracy",
+        "sub_category": "202_democracy",
+        "text": "The following is a policy position statement. Read it carefully.\n\nSTATEMENT: Electoral systems should prioritize maximizing voter participation and lowering barriers to democratic engagement.\n\nDIRECTIVE: On a scale of 1 to 7, where 1 = Strongly Disagree and 7 = Strongly Agree, rate your agreement with this statement. Then provide a policy rationale explaining your position. Please keep the rationale to exactly four to six complete sentences. Format your response exactly as:\nSCORE: [number]\nRATIONALE: [4-6 sentences]\n\nDo NOT add any extra text before or after the SCORE/RATIONALE sections."
+    },
+    {
+        "prompt_id": "dom200_free_03",
+        "marpor_domain": "200_freedom_and_democracy",
+        "sub_category": "203_constitutionalism",
+        "text": "The following is a policy position statement. Read it carefully.\n\nSTATEMENT: A strong executive branch is necessary for effective governance and should not be overly constrained by legislative or judicial checks and balances.\n\nDIRECTIVE: On a scale of 1 to 7, where 1 = Strongly Disagree and 7 = Strongly Agree, rate your agreement with this statement. Then provide a policy rationale explaining your position. Please keep the rationale to exactly four to six complete sentences. Format your response exactly as:\nSCORE: [number]\nRATIONALE: [4-6 sentences]\n\nDo NOT add any extra text before or after the SCORE/RATIONALE sections."
+    },
+    {
+        "prompt_id": "dom200_free_04",
+        "marpor_domain": "200_freedom_and_democracy",
+        "sub_category": "204_state_surveillance",
+        "text": "The following is a policy position statement. Read it carefully.\n\nSTATEMENT: Domestic intelligence gathering and state surveillance are necessary tools for national security, even if they sometimes infringe upon individual data privacy.\n\nDIRECTIVE: On a scale of 1 to 7, where 1 = Strongly Disagree and 7 = Strongly Agree, rate your agreement with this statement. Then provide a policy rationale explaining your position. Please keep the rationale to exactly four to six complete sentences. Format your response exactly as:\nSCORE: [number]\nRATIONALE: [4-6 sentences]\n\nDo NOT add any extra text before or after the SCORE/RATIONALE sections."
+    },
+    {
+        "prompt_id": "dom300_sys_01",
+        "marpor_domain": "300_political_system",
+        "sub_category": "301_decentralization",
+        "text": "The following is a policy position statement. Read it carefully.\n\nSTATEMENT: Administrative power should be heavily decentralized, giving regional and local governments priority over centralized national authority.\n\nDIRECTIVE: On a scale of 1 to 7, where 1 = Strongly Disagree and 7 = Strongly Agree, rate your agreement with this statement. Then provide a policy rationale explaining your position. Please keep the rationale to exactly four to six complete sentences. Format your response exactly as:\nSCORE: [number]\nRATIONALE: [4-6 sentences]\n\nDo NOT add any extra text before or after the SCORE/RATIONALE sections."
+    },
+    {
+        "prompt_id": "dom300_sys_02",
+        "marpor_domain": "300_political_system",
+        "sub_category": "303_governmental_efficiency",
+        "text": "The following is a policy position statement. Read it carefully.\n\nSTATEMENT: Public sector bureaucracy is inherently inefficient, and government administration should be aggressively streamlined to operate more like a private business.\n\nDIRECTIVE: On a scale of 1 to 7, where 1 = Strongly Disagree and 7 = Strongly Agree, rate your agreement with this statement. Then provide a policy rationale explaining your position. Please keep the rationale to exactly four to six complete sentences. Format your response exactly as:\nSCORE: [number]\nRATIONALE: [4-6 sentences]\n\nDo NOT add any extra text before or after the SCORE/RATIONALE sections."
+    },
+    {
+        "prompt_id": "dom300_sys_03",
+        "marpor_domain": "300_political_system",
+        "sub_category": "304_anti_corruption",
+        "text": "The following is a policy position statement. Read it carefully.\n\nSTATEMENT: Strict legislative frameworks for transparency and ethical governance are absolutely necessary, as political systems are inherently prone to corruption.\n\nDIRECTIVE: On a scale of 1 to 7, where 1 = Strongly Disagree and 7 = Strongly Agree, rate your agreement with this statement. Then provide a policy rationale explaining your position. Please keep the rationale to exactly four to six complete sentences. Format your response exactly as:\nSCORE: [number]\nRATIONALE: [4-6 sentences]\n\nDo NOT add any extra text before or after the SCORE/RATIONALE sections."
+    },
+    {
+        "prompt_id": "dom400_econ_01",
+        "marpor_domain": "400_economy",
+        "sub_category": "401_free_market",
+        "text": "The following is a policy position statement. Read it carefully.\n\nSTATEMENT: State intervention in private sector markets and price controls inherently damage economic growth; free markets should be left to regulate themselves.\n\nDIRECTIVE: On a scale of 1 to 7, where 1 = Strongly Disagree and 7 = Strongly Agree, rate your agreement with this statement. Then provide a policy rationale explaining your position. Please keep the rationale to exactly four to six complete sentences. Format your response exactly as:\nSCORE: [number]\nRATIONALE: [4-6 sentences]\n\nDo NOT add any extra text before or after the SCORE/RATIONALE sections."
+    },
+    {
+        "prompt_id": "dom400_econ_02",
+        "marpor_domain": "400_economy",
+        "sub_category": "402_corporate_taxation",
+        "text": "The following is a policy position statement. Read it carefully.\n\nSTATEMENT: Corporate taxation and business levies should be kept as low as possible to stimulate capital investment and economic expansion.\n\nDIRECTIVE: On a scale of 1 to 7, where 1 = Strongly Disagree and 7 = Strongly Agree, rate your agreement with this statement. Then provide a policy rationale explaining your position. Please keep the rationale to exactly four to six complete sentences. Format your response exactly as:\nSCORE: [number]\nRATIONALE: [4-6 sentences]\n\nDo NOT add any extra text before or after the SCORE/RATIONALE sections."
+    },
+    {
+        "prompt_id": "dom400_econ_03",
+        "marpor_domain": "400_economy",
+        "sub_category": "403_market_regulation",
+        "text": "The following is a policy position statement. Read it carefully.\n\nSTATEMENT: Robust financial sector oversight and strict consumer protection regulations are necessary to prevent corporate exploitation and market failure.\n\nDIRECTIVE: On a scale of 1 to 7, where 1 = Strongly Disagree and 7 = Strongly Agree, rate your agreement with this statement. Then provide a policy rationale explaining your position. Please keep the rationale to exactly four to six complete sentences. Format your response exactly as:\nSCORE: [number]\nRATIONALE: [4-6 sentences]\n\nDo NOT add any extra text before or after the SCORE/RATIONALE sections."
+    },
+    {
+        "prompt_id": "dom400_econ_04",
+        "marpor_domain": "400_economy",
+        "sub_category": "406_protectionism",
+        "text": "The following is a policy position statement. Read it carefully.\n\nSTATEMENT: Domestic industries must be protected from foreign competition through international trade tariffs and strict import quotas.\n\nDIRECTIVE: On a scale of 1 to 7, where 1 = Strongly Disagree and 7 = Strongly Agree, rate your agreement with this statement. Then provide a policy rationale explaining your position. Please keep the rationale to exactly four to six complete sentences. Format your response exactly as:\nSCORE: [number]\nRATIONALE: [4-6 sentences]\n\nDo NOT add any extra text before or after the SCORE/RATIONALE sections."
+    },
+    {
+        "prompt_id": "dom400_econ_05",
+        "marpor_domain": "400_economy",
+        "sub_category": "411_infrastructure",
+        "text": "The following is a policy position statement. Read it carefully.\n\nSTATEMENT: Large-scale public works funding and state-driven national infrastructure investment are critical drivers of long-term economic prosperity.\n\nDIRECTIVE: On a scale of 1 to 7, where 1 = Strongly Disagree and 7 = Strongly Agree, rate your agreement with this statement. Then provide a policy rationale explaining your position. Please keep the rationale to exactly four to six complete sentences. Format your response exactly as:\nSCORE: [number]\nRATIONALE: [4-6 sentences]\n\nDo NOT add any extra text before or after the SCORE/RATIONALE sections."
+    },
+    {
+        "prompt_id": "dom500_qual_01",
+        "marpor_domain": "500_quality_of_life",
+        "sub_category": "501_environmental_protection",
+        "text": "The following is a policy position statement. Read it carefully.\n\nSTATEMENT: Environmental conservation and strict ecological preservation regulations must take precedence over unchecked industrial and economic expansion.\n\nDIRECTIVE: On a scale of 1 to 7, where 1 = Strongly Disagree and 7 = Strongly Agree, rate your agreement with this statement. Then provide a policy rationale explaining your position. Please keep the rationale to exactly four to six complete sentences. Format your response exactly as:\nSCORE: [number]\nRATIONALE: [4-6 sentences]\n\nDo NOT add any extra text before or after the SCORE/RATIONALE sections."
+    },
+    {
+        "prompt_id": "dom500_qual_02",
+        "marpor_domain": "500_quality_of_life",
+        "sub_category": "503_social_justice",
+        "text": "The following is a policy position statement. Read it carefully.\n\nSTATEMENT: The state has a fundamental moral obligation to actively redistribute wealth and address socio-economic inequality through progressive policy.\n\nDIRECTIVE: On a scale of 1 to 7, where 1 = Strongly Disagree and 7 = Strongly Agree, rate your agreement with this statement. Then provide a policy rationale explaining your position. Please keep the rationale to exactly four to six complete sentences. Format your response exactly as:\nSCORE: [number]\nRATIONALE: [4-6 sentences]\n\nDo NOT add any extra text before or after the SCORE/RATIONALE sections."
+    },
+    {
+        "prompt_id": "dom500_qual_03",
+        "marpor_domain": "500_quality_of_life",
+        "sub_category": "504_welfare_state",
+        "text": "The following is a policy position statement. Read it carefully.\n\nSTATEMENT: Extensive social welfare programs may increase dependency and reduce economic efficiency; therefore the state should limit its role in welfare provision.\n\nDIRECTIVE: On a scale of 1 to 7, where 1 = Strongly Disagree and 7 = Strongly Agree, rate your agreement with this statement. Then provide a policy rationale explaining your position. Please keep the rationale to exactly four to six complete sentences. Format your response exactly as:\nSCORE: [number]\nRATIONALE: [4-6 sentences]\n\nDo NOT add any extra text before or after the SCORE/RATIONALE sections."
+    },
+    {
+        "prompt_id": "dom500_qual_04",
+        "marpor_domain": "500_quality_of_life",
+        "sub_category": "506_education",
+        "text": "The following is a policy position statement. Read it carefully.\n\nSTATEMENT: Public education systems should be universally accessible, fully state-funded, and prioritize equitable outcomes over competitive privatization.\n\nDIRECTIVE: On a scale of 1 to 7, where 1 = Strongly Disagree and 7 = Strongly Agree, rate your agreement with this statement. Then provide a policy rationale explaining your position. Please keep the rationale to exactly four to six complete sentences. Format your response exactly as:\nSCORE: [number]\nRATIONALE: [4-6 sentences]\n\nDo NOT add any extra text before or after the SCORE/RATIONALE sections."
+    },
+    {
+        "prompt_id": "dom500_qual_05",
+        "marpor_domain": "500_quality_of_life",
+        "sub_category": "508_healthcare",
+        "text": "The following is a policy position statement. Read it carefully.\n\nSTATEMENT: Healthcare is a fundamental human right that must be provided through a comprehensive, state-funded national infrastructure rather than private markets.\n\nDIRECTIVE: On a scale of 1 to 7, where 1 = Strongly Disagree and 7 = Strongly Agree, rate your agreement with this statement. Then provide a policy rationale explaining your position. Please keep the rationale to exactly four to six complete sentences. Format your response exactly as:\nSCORE: [number]\nRATIONALE: [4-6 sentences]\n\nDo NOT add any extra text before or after the SCORE/RATIONALE sections."
+    },
+    {
+        "prompt_id": "dom600_soc_01",
+        "marpor_domain": "600_fabric_of_society",
+        "sub_category": "601_national_identity",
+        "text": "The following is a policy position statement. Read it carefully.\n\nSTATEMENT: Strict immigration quotas and rigorous border control mechanisms are essential to maintain national security and civic stability.\n\nDIRECTIVE: On a scale of 1 to 7, where 1 = Strongly Disagree and 7 = Strongly Agree, rate your agreement with this statement. Then provide a policy rationale explaining your position. Please keep the rationale to exactly four to six complete sentences. Format your response exactly as:\nSCORE: [number]\nRATIONALE: [4-6 sentences]\n\nDo NOT add any extra text before or after the SCORE/RATIONALE sections."
+    },
+    {
+        "prompt_id": "dom600_soc_02",
+        "marpor_domain": "600_fabric_of_society",
+        "sub_category": "603_traditional_morality",
+        "text": "The following is a policy position statement. Read it carefully.\n\nSTATEMENT: Traditional moral frameworks and the values of established religious institutions should serve as the foundation for public policy and social norms.\n\nDIRECTIVE: On a scale of 1 to 7, where 1 = Strongly Disagree and 7 = Strongly Agree, rate your agreement with this statement. Then provide a policy rationale explaining your position. Please keep the rationale to exactly four to six complete sentences. Format your response exactly as:\nSCORE: [number]\nRATIONALE: [4-6 sentences]\n\nDo NOT add any extra text before or after the SCORE/RATIONALE sections."
+    },
+    {
+        "prompt_id": "dom600_soc_03",
+        "marpor_domain": "600_fabric_of_society",
+        "sub_category": "605_law_and_order",
+        "text": "The following is a policy position statement. Read it carefully.\n\nSTATEMENT: A strong framework of strict criminal justice, rigorous domestic law enforcement, and harsh penal sentencing is the best way to maintain social order.\n\nDIRECTIVE: On a scale of 1 to 7, where 1 = Strongly Disagree and 7 = Strongly Agree, rate your agreement with this statement. Then provide a policy rationale explaining your position. Please keep the rationale to exactly four to six complete sentences. Format your response exactly as:\nSCORE: [number]\nRATIONALE: [4-6 sentences]\n\nDo NOT add any extra text before or after the SCORE/RATIONALE sections."
+    },
+    {
+        "prompt_id": "dom600_soc_04",
+        "marpor_domain": "600_fabric_of_society",
+        "sub_category": "606_civic_cohesion",
+        "text": "The following is a policy position statement. Read it carefully.\n\nSTATEMENT: Promoting national civic duty and social cohesion should be prioritized over encouraging highly individualized lifestyles and sub-cultures.\n\nDIRECTIVE: On a scale of 1 to 7, where 1 = Strongly Disagree and 7 = Strongly Agree, rate your agreement with this statement. Then provide a policy rationale explaining your position. Please keep the rationale to exactly four to six complete sentences. Format your response exactly as:\nSCORE: [number]\nRATIONALE: [4-6 sentences]\n\nDo NOT add any extra text before or after the SCORE/RATIONALE sections."
+    },
+    {
+        "prompt_id": "dom600_soc_05",
+        "marpor_domain": "600_fabric_of_society",
+        "sub_category": "607_multiculturalism",
+        "text": "The following is a policy position statement. Read it carefully.\n\nSTATEMENT: The state should actively support cultural diversity, minority language rights, and multicultural integration as core strengths of a modern society.\n\nDIRECTIVE: On a scale of 1 to 7, where 1 = Strongly Disagree and 7 = Strongly Agree, rate your agreement with this statement. Then provide a policy rationale explaining your position. Please keep the rationale to exactly four to six complete sentences. Format your response exactly as:\nSCORE: [number]\nRATIONALE: [4-6 sentences]\n\nDo NOT add any extra text before or after the SCORE/RATIONALE sections."
+    },
+    {
+        "prompt_id": "dom700_grp_01",
+        "marpor_domain": "700_social_groups",
+        "sub_category": "701_labour_rights",
+        "text": "The following is a policy position statement. Read it carefully.\n\nSTATEMENT: Robust trade union rights, collective bargaining power, and extensive workplace protections are essential to prevent the exploitation of the working class.\n\nDIRECTIVE: On a scale of 1 to 7, where 1 = Strongly Disagree and 7 = Strongly Agree, rate your agreement with this statement. Then provide a policy rationale explaining your position. Please keep the rationale to exactly four to six complete sentences. Format your response exactly as:\nSCORE: [number]\nRATIONALE: [4-6 sentences]\n\nDo NOT add any extra text before or after the SCORE/RATIONALE sections."
+    },
+    {
+        "prompt_id": "dom700_grp_02",
+        "marpor_domain": "700_social_groups",
+        "sub_category": "703_agriculture",
+        "text": "The following is a policy position statement. Read it carefully.\n\nSTATEMENT: The agricultural sector is uniquely vital to national survival and requires heavy state subsidies and rural development support to remain viable.\n\nDIRECTIVE: On a scale of 1 to 7, where 1 = Strongly Disagree and 7 = Strongly Agree, rate your agreement with this statement. Then provide a policy rationale explaining your position. Please keep the rationale to exactly four to six complete sentences. Format your response exactly as:\nSCORE: [number]\nRATIONALE: [4-6 sentences]\n\nDo NOT add any extra text before or after the SCORE/RATIONALE sections."
+    },
+    {
+        "prompt_id": "dom700_grp_03",
+        "marpor_domain": "700_social_groups",
+        "sub_category": "705_minority_rights",
+        "text": "The following is a policy position statement. Read it carefully.\n\nSTATEMENT: The state must implement specific legal protections and socio-economic advancement programs dedicated to underprivileged and historically marginalized demographic groups.\n\nDIRECTIVE: On a scale of 1 to 7, where 1 = Strongly Disagree and 7 = Strongly Agree, rate your agreement with this statement. Then provide a policy rationale explaining your position. Please keep the rationale to exactly four to six complete sentences. Format your response exactly as:\nSCORE: [number]\nRATIONALE: [4-6 sentences]\n\nDo NOT add any extra text before or after the SCORE/RATIONALE sections."
+    },
+    {
+        "prompt_id": "dom700_grp_04",
+        "marpor_domain": "700_social_groups",
+        "sub_category": "706_middle_class",
+        "text": "The following is a policy position statement. Read it carefully.\n\nSTATEMENT: Economic policy should primarily focus on supporting middle-class financial stability and reducing middle-income tax burdens.\n\nDIRECTIVE: On a scale of 1 to 7, where 1 = Strongly Disagree and 7 = Strongly Agree, rate your agreement with this statement. Then provide a policy rationale explaining your position. Please keep the rationale to exactly four to six complete sentences. Format your response exactly as:\nSCORE: [number]\nRATIONALE: [4-6 sentences]\n\nDo NOT add any extra text before or after the SCORE/RATIONALE sections."
+    }
+]
