@@ -131,12 +131,47 @@ def init_db(db_path=None):
 
 # ── Models ────────────────────────────────────────────────────────────────────────
 HARDCODED_MODELS = [
-    {"requested_model": "gpt-mini-latest",      "slug": "~openai/gpt-mini-latest",               "provider_pin": "OpenAI",     "backend": "openrouter", "variable_type": "experimental"},
-    {"requested_model": "claude-haiku-latest",  "slug": "~anthropic/claude-haiku-latest",         "provider_pin": "Anthropic",  "backend": "openrouter", "variable_type": "experimental"},
-    {"requested_model": "gemini-flash-latest",  "slug": "~google/gemini-flash-latest",            "provider_pin": "Google",     "backend": "openrouter", "variable_type": "experimental"},
-    {"requested_model": "grok-latest",          "slug": "~x-ai/grok-latest",                     "provider_pin": "xAI",        "backend": "openrouter", "variable_type": "experimental"},
-    {"requested_model": "llama-3.2-3b-control", "slug": "llama3.2:3b",                           "backend": "ollama",                                   "variable_type": "control"},
-    {"requested_model": "llama-3.2-3b-noise",   "slug": "meta-llama/llama-3.2-3b-instruct",      "backend": "openrouter",      "temperature": 0.0,      "variable_type": "noise_control"},
+    {
+        "requested_model": "gpt-mini-latest",
+        "slug": "~openai/gpt-mini-latest",
+        "provider_pin": "OpenAI",
+        "backend": "openrouter",
+        "variable_type": "experimental"
+    },
+    {
+        "requested_model": "claude-haiku-latest",
+        "slug": "~anthropic/claude-haiku-latest",
+        "provider_pin": "Anthropic",
+        "backend": "openrouter",
+        "variable_type": "experimental"
+    },
+    {
+        "requested_model": "gemini-flash-latest",
+        "slug": "~google/gemini-flash-latest",
+        "provider_pin": "Google",
+        "backend": "openrouter",
+        "variable_type": "experimental"
+    },
+    {
+        "requested_model": "grok-latest",
+        "slug": "~x-ai/grok-latest",
+        "provider_pin": "xAI",
+        "backend": "openrouter",
+        "variable_type": "experimental"
+    },
+    {
+        "requested_model": "llama-3.2-3b-control",
+        "slug": "llama3.2:3b",
+        "backend": "ollama",
+        "variable_type": "control"
+    },
+    {
+        "requested_model": "llama-3.2-3b-noise",
+        "slug": "meta-llama/llama-3.2-3b-instruct",
+        "backend": "openrouter",
+        "temperature": 0.0,
+        "variable_type": "noise_control"
+    },
 ]
 
 MODEL_LABELS = {
