@@ -1,8 +1,12 @@
 # LLM → ManifestoBERTa Political Alignment Pipeline
 
-Data collection backend for my thesis — probes GPT, Claude, Gemini, Grok and a local Llama control across 7 MARPOR policy domains daily, scores responses with [ManifestoBERTa](https://huggingface.co/manifesto-project/manifestoberta-xlm-roberta-56policy-topics-sentence-2023-1-1) and stores RILE indices + evasion metrics in SQLite.
+Data collection backend for my research — probes GPT, Claude, Gemini, Grok and a local Llama control across 7 MARPOR policy domains daily, scores responses with [ManifestoBERTa](https://huggingface.co/manifesto-project/manifestoberta-xlm-roberta-56policy-topics-sentence-2023-1-1) and stores RILE indices + evasion metrics in SQLite.
 
 Live data dashboard → **[research.tinknet.co.uk](https://research.tinknet.co.uk)**
+
+This is my first ever public git project. The pipeline is intended to be kept open source and never redistributed as a private product. Any feedback, edits or forking would be greatly appreciated :)
+
+This project was built with the aid of GitHub copilot.
 
 ---
 
