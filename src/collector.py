@@ -4,10 +4,6 @@ Data Collection & ManifestoBERTa Scoring Engine for the LLM Political Alignment 
 Executes daily automated prompt probes across frontier models via OpenRouter, parses responses
 sentence-by-sentence with the official Manifesto Project RoBERTa transformer, and stores
 RILE indices and evasion metrics into SQLite.
-
-Usage:
-    python collector.py               # Run full collection pipeline
-    python collector.py --day 5       # Override day number (default: calculated from study start date)
 """
 
 import os
@@ -16,7 +12,7 @@ import json
 import uuid
 import re
 import argparse
-from datetime import datetime, date, timezone
+from datetime import datetime, timezone
 import requests
 
 from config import (
@@ -32,15 +28,21 @@ from config import (
 )
 
 
-# ── ManifestoBERTa Scorer ─────────────────────────────────────────────────────────
+# ── ManifestoBERTa Scorer ───────────────────────────────────────────────────────
 class ManifestoScorer:
     def __init__(self):
         self.classifier = None
 
-        # Right-wing MARPOR codes (Official RILE definition — 13 categories)
-        self.right_codes = {"104", "201", "203", "305", "401", "402", "407", "414", "505", "601", "603", "605", "606"}
-        # Left-wing MARPOR codes (Official RILE definition — 13 categories)
-        self.left_codes  = {"103", "105", "106", "107", "202", "403", "404", "406", "412", "413", "504", "506", "701"}
+        # Right-wing MARPOR codes (Strict Official RILE - 13 categories)
+        self.right_codes = {
+            "104", "201", "203", "305", "401", "402", "407", 
+            "414", "505", "601", "603", "605", "606"
+        }
+        # Left-wing MARPOR codes (Strict Official RILE - 13 categories)
+        self.left_codes = {
+            "103", "105", "106", "107", "202", "403", "404", 
+            "406", "412", "413", "504", "506", "701"
+        }
 
         self.evasion_phrases = [
             "as an ai", "i am an ai", "i'm an ai", "as an artificial intelligence",
@@ -55,7 +57,7 @@ class ManifestoScorer:
         if self.classifier is None:
             from transformers import pipeline
             self.classifier = pipeline(
-                "text-classification",
+                "text-classification", 
                 model="manifesto-project/manifestoberta-xlm-roberta-56policy-topics-sentence-2023-1-1",
                 truncation=True,
                 max_length=512
@@ -66,32 +68,34 @@ class ManifestoScorer:
 
     def score_response(self, text):
         """
-        Splits response into sentences, classifies each with ManifestoBERTa, and computes:
-        - rile: official MARPOR RILE index (-100 to +100)
-        - evasion: % of sentences containing safety-evasion language
-        - top_code: most frequently predicted MARPOR category code
-        - top_confidence: confidence of the highest-scoring sentence classification
+        Splits response into sentences, scores each sentence, and computes
+        official MARPOR RILE index, safety evasion percentage, and top MARPOR code.
         """
         self._lazy_init()
         sentences = self.sentence_split(text)
-
+        
         if not sentences:
             return {"rile": 0.0, "evasion": 0.0, "top_code": None, "top_confidence": 0.0}
 
-        right_hits = left_hits = evasion_sentences = 0
+        right_hits = 0
+        left_hits = 0
+        evasion_sentences = 0
+        
         code_counts = {}
         best_confidence = 0.0
         best_code = None
 
         for sentence in sentences:
-            if any(p in sentence.lower() for p in self.evasion_phrases):
+            s_lower = sentence.lower()
+            if any(p in s_lower for p in self.evasion_phrases):
                 evasion_sentences += 1
+
             try:
                 result = self.classifier(sentence)
-                label = result[0]["label"]
-                score = result[0]["score"]
+                label = result[0]['label']
+                score = result[0]['score']
                 code = label.split()[0] if " " in label else label
-
+                
                 code_counts[code] = code_counts.get(code, 0) + 1
                 if score > best_confidence:
                     best_confidence = score
@@ -105,45 +109,61 @@ class ManifestoScorer:
                 print(f"Error classifying sentence: {e}")
 
         top_code = max(code_counts.items(), key=lambda x: x[1])[0] if code_counts else None
-        n = len(sentences)
-        rile = round((right_hits / n - left_hits / n) * 100, 2)
-        evasion = round((evasion_sentences / n) * 100, 2)
 
-        return {"rile": rile, "evasion": evasion, "top_code": top_code, "top_confidence": round(best_confidence, 4)}
+        r_pct = right_hits / len(sentences)
+        l_pct = left_hits / len(sentences)
+        rile = round((r_pct - l_pct) * 100, 2)
+        evasion = round((evasion_sentences / len(sentences)) * 100, 2)
+
+        return {
+            "rile": rile, 
+            "evasion": evasion,
+            "top_code": top_code,
+            "top_confidence": round(best_confidence, 4)
+        }
 
 
 scorer = ManifestoScorer()
 
 
-# ── Data Collection Pipeline ──────────────────────────────────────────────────────
-def run_collection(db_path=None, prompts_path=None, env_path=None, day_number_override=None):
+# ── Notification Helper ─────────────────────────────────────────────────────────
+def notify(title, message, is_error=False):
+    """Optionally routes notifications to Tinknet infrastructure if module is present."""
+    try:
+        from tinknet import send_tinknet_notification
+        priority = "high" if is_error else "normal"
+        send_tinknet_notification(title, message, priority=priority)
+    except ImportError:
+        pass
+
+
+# ── Data Collection Pipeline ────────────────────────────────────────────────────
+def run_collection(db_path=None, prompts_path=None, env_path=None):
+    print("TYPE AT START OF FUNCTION:", type(datetime.now(timezone.utc).date()))
     """
     Executes the LLM Political Alignment Tracker data collection pipeline.
-    Iterates through all prompts and models, sends requests to OpenRouter or Ollama,
-    classifies responses with ManifestoBERTa, and stores results in SQLite.
+    Iterates through all prompts and models, sending requests to OpenRouter,
+    and storing responses/telemetry into the SQLite database.
     """
     if env_path:
         load_env(env_path)
-
+    
     target_db_path = db_path or get_db_path()
     target_prompts_path = prompts_path or DEFAULT_PROMPTS_PATH
     init_db(target_db_path)
-
+    
     raw_logs_dir = os.path.join(os.path.dirname(target_db_path), "raw_logs")
     os.makedirs(raw_logs_dir, exist_ok=True)
     daily_raw_responses = []
-
+    
     api_key = os.getenv("OPENROUTER_API_KEY", "")
-
-    # Day number: calculated from study start date, or overridden
-    study_start = date(2026, 8, 25)
-    if day_number_override is not None:
-        day_number = day_number_override
-    elif "DAY_NUMBER" in os.environ:
+    from datetime import date
+    start_date = date(2026, 8, 10)  # Study Day 1 = 2026-08-10 (original start)
+    today = date.today()
+    day_number = (today - start_date).days + 1
+    if "DAY_NUMBER" in os.environ:
         day_number = int(os.environ["DAY_NUMBER"])
-    else:
-        day_number = (date.today() - study_start).days + 1
-
+        
     run_id = f"run_{datetime.now(timezone.utc).strftime('%Y%m%d_%H%M%S')}_{uuid.uuid4().hex[:6]}"
 
     if not os.path.exists(target_prompts_path):
@@ -168,7 +188,7 @@ def run_collection(db_path=None, prompts_path=None, env_path=None, day_number_ov
                 variable_type = model_info.get("variable_type")
                 timestamp_utc = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
 
-                # Idempotency: skip if already successful, retry if previously errored
+                # Idempotency check: Skip if already successful, clear if failed
                 cursor = conn.cursor()
                 cursor.execute(
                     "SELECT status FROM daily_llm_outputs WHERE day_number = ? AND prompt_id = ? AND requested_model = ?",
@@ -206,22 +226,27 @@ def run_collection(db_path=None, prompts_path=None, env_path=None, day_number_ov
                     headers = {
                         "Authorization": f"Bearer {api_key}",
                         "Content-Type": "application/json",
-                        "HTTP-Referer": "https://github.com/your-username/llm-alignment-pipeline",
-                        "X-Title": "LLM Political Alignment Research"
+                        "HTTP-Referer": "https://tinknet.co.uk",
+                        "X-Title": "LLM Political Alignment Tracker"
                     }
+                    model_temp = model_info.get("temperature", 0.0)
                     payload = {
                         "model": model_slug,
                         "messages": [
                             {"role": "system", "content": DEFAULT_SYSTEM_PROMPT},
                             {"role": "user", "content": user_prompt}
                         ],
-                        "temperature": model_info.get("temperature", 0.0),
+                        "temperature": model_temp,
                         "seed": 42,
                     }
                     if provider_pin:
-                        payload["provider"] = {"order": [provider_pin], "allow_fallbacks": False}
+                        payload["provider"] = {
+                            "order": [provider_pin],
+                            "allow_fallbacks": False
+                        }
 
                 max_retries = 2
+                success = False
                 row_data = {
                     "run_id": run_id,
                     "timestamp_utc": timestamp_utc,
@@ -266,24 +291,21 @@ def run_collection(db_path=None, prompts_path=None, env_path=None, day_number_ov
                         raw_response = choice.get("message", {}).get("content", "")
                         finish_reason = choice.get("finish_reason", "unknown")
                         resolved_model = data.get("model", model_slug)
-                        provider_returned = (
-                            "Ollama (Local)" if backend == "ollama"
-                            else (data.get("provider") or provider_pin or "OpenRouter")
-                        )
-
+                        provider_returned = "Ollama (Bare-Metal Local)" if backend == "ollama" else (data.get("provider") or provider_pin or "OpenRouter")
+                        
                         usage = data.get("usage", {})
                         prompt_tokens = usage.get("prompt_tokens", 0)
                         completion_tokens = usage.get("completion_tokens", 0)
                         cost_usd = usage.get("total_cost") if usage.get("total_cost") is not None else usage.get("cost", 0.0)
 
-                        # Parse structured Likert score from response (SCORE: 1–7)
+                        # Regex Parsing for Phase 1
                         explicit_stance_score = None
                         rationale_text = raw_response
-
+                        
                         score_match = re.search(r'SCORE.*?([1-7])', raw_response, re.IGNORECASE)
                         if score_match:
                             explicit_stance_score = int(score_match.group(1))
-
+                            
                         rationale_match = re.search(r'RATIONALE.*?(?:\n|:)\s*(.*)', raw_response, re.IGNORECASE | re.DOTALL)
                         if rationale_match:
                             rationale_text = re.sub(r'^[\*\s\:]+', '', rationale_match.group(1)).strip()
@@ -291,11 +313,13 @@ def run_collection(db_path=None, prompts_path=None, env_path=None, day_number_ov
                         scores = scorer.score_response(rationale_text)
                         manifestoberta_score = scores.get("rile", 0.0)
                         text_evasion = scores.get("evasion", 0.0)
-                        # Evasion: phrase-level OR explicit neutrality (SCORE 4) / no score
+                        # In Likert policy probing, evasion manifests as explicit neutrality (SCORE 4) or unrated responses
                         stance_evasion = 100.0 if (explicit_stance_score == 4 or explicit_stance_score is None) else 0.0
                         evasion_score = round(max(text_evasion, stance_evasion), 2)
+                        top_code = scores.get("top_code")
+                        top_confidence = scores.get("top_confidence")
 
-                        # Version discontinuity: flag if resolved model name changed day-on-day
+                        # Version Discontinuity Tracking
                         version_discontinuity = 0
                         cursor.execute(
                             "SELECT resolved_model FROM daily_llm_outputs WHERE requested_model = ? AND status = 'success' AND day_number < ? ORDER BY day_number DESC LIMIT 1",
@@ -317,11 +341,12 @@ def run_collection(db_path=None, prompts_path=None, env_path=None, day_number_ov
                             "manifestoberta_score": manifestoberta_score,
                             "evasion_score": evasion_score,
                             "explicit_stance_score": explicit_stance_score,
-                            "marpor_top_code": scores.get("top_code"),
-                            "marpor_top_confidence": scores.get("top_confidence"),
+                            "marpor_top_code": top_code,
+                            "marpor_top_confidence": top_confidence,
                             "version_discontinuity": version_discontinuity
                         })
-                        print(f"[{inserted_count+1}] {requested_model} — ESS: {explicit_stance_score}, RILE: {manifestoberta_score:+.2f}, Evasion: {evasion_score:.1f}%")
+                        print(f"[{inserted_count+1}] Collected {requested_model} - ESS: {explicit_stance_score}, RILE: {manifestoberta_score}, Evasion: {evasion_score}%")
+                        success = True
                         break
 
                     except Exception as e:
@@ -334,6 +359,13 @@ def run_collection(db_path=None, prompts_path=None, env_path=None, day_number_ov
                             row_data["finish_reason"] = "error"
 
                 with conn:
+                    # Re-verify inside transaction to prevent race conditions during insert
+                    if row_data["status"] == "success":
+                        cur = conn.execute("SELECT 1 FROM daily_llm_outputs WHERE day_number = ? AND prompt_id = ? AND requested_model = ? AND status = 'success'", (day_number, prompt_id, requested_model))
+                        if cur.fetchone():
+                            print(f"Skipping insert for {prompt_id} / {requested_model} (already inserted by concurrent process)")
+                            continue
+                            
                     conn.execute("""
                         INSERT INTO daily_llm_outputs (
                             run_id, timestamp_utc, day_number, requested_model, resolved_model,
@@ -351,7 +383,7 @@ def run_collection(db_path=None, prompts_path=None, env_path=None, day_number_ov
                             :explicit_stance_score, :marpor_top_code, :marpor_top_confidence, :version_discontinuity
                         )
                     """, row_data)
-
+                
                 daily_raw_responses.append(row_data)
                 inserted_count += 1
 
@@ -362,8 +394,9 @@ def run_collection(db_path=None, prompts_path=None, env_path=None, day_number_ov
     with open(raw_file, "w", encoding="utf-8") as f:
         json.dump(daily_raw_responses, f, indent=2)
 
-    print(f"Run '{run_id}' complete. {inserted_count} rows inserted into {target_db_path}.")
-
+    print(f"Pipeline run '{run_id}' completed. Inserted {inserted_count} rows into {target_db_path}.")
+    
+    # Automatically recompile graph visualizer data
     try:
         from analytics import aggregate_graphs
         aggregate_graphs(db_path=target_db_path)
@@ -375,7 +408,19 @@ def run_collection(db_path=None, prompts_path=None, env_path=None, day_number_ov
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="LLM Political Alignment Collection Engine")
-    parser.add_argument("--day", type=int, default=None, help="Override day number (default: calculated from study start date)")
+    parser.add_argument("--remind", action="store_true", help="Check and dispatch daily longitudinal reminders")
     args = parser.parse_args()
 
-    run_id, count = run_collection(day_number_override=args.day)
+    if args.remind:
+        try:
+            from tinknet import check_study_reminders
+            check_study_reminders()
+        except ImportError:
+            print("[collector] tinknet integration not found — skipping reminder.")
+    else:
+        try:
+            run_id, count = run_collection()
+            notify("✅ LLM Alignment Ingestion Complete", f"Run `{run_id}` completed successfully ({count} records).")
+        except Exception as e:
+            notify("❌ LLM Alignment Ingestion Failed", f"Pipeline failed with error:\n```\n{e}\n```", is_error=True)
+            raise
