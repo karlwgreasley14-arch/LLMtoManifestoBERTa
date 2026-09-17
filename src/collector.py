@@ -139,7 +139,6 @@ def notify(title, message, is_error=False):
 
 # ── Data Collection Pipeline ────────────────────────────────────────────────────
 def run_collection(db_path=None, prompts_path=None, env_path=None):
-    print("TYPE AT START OF FUNCTION:", type(datetime.now(timezone.utc).date()))
     """
     Executes the LLM Political Alignment Tracker data collection pipeline.
     Iterates through all prompts and models, sending requests to OpenRouter,
@@ -293,7 +292,7 @@ def run_collection(db_path=None, prompts_path=None, env_path=None):
                         resolved_model = data.get("model", model_slug)
                         provider_returned = "Ollama (Bare-Metal Local)" if backend == "ollama" else (data.get("provider") or provider_pin or "OpenRouter")
                         
-                        usage = data.get("usage", {})
+                        usage = data.get("usage") or {}
                         prompt_tokens = usage.get("prompt_tokens", 0)
                         completion_tokens = usage.get("completion_tokens", 0)
                         cost_usd = usage.get("total_cost") if usage.get("total_cost") is not None else usage.get("cost", 0.0)

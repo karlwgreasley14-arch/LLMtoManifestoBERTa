@@ -27,10 +27,8 @@ def get_db_connection(db_path=None):
     if not os.path.exists(target):
         raise FileNotFoundError(f"Database not found at {target}")
     
-    # Use temporary snapshot to prevent SQLite WAL locking during heavy read analytics
-    snapshot = "/tmp/analytics_db_snapshot.db"
-    shutil.copy2(target, snapshot)
-    conn = sqlite3.connect(f"file:{snapshot}?mode=ro", uri=True)
+    # Connect in read-only mode. WAL mode supports concurrent readers without blocking writers.
+    conn = sqlite3.connect(f"file:{target}?mode=ro", uri=True)
     conn.row_factory = sqlite3.Row
     return conn
 
