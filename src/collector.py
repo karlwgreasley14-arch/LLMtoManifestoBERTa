@@ -157,11 +157,12 @@ def run_collection(db_path=None, prompts_path=None, env_path=None):
     
     api_key = os.getenv("OPENROUTER_API_KEY", "")
     from datetime import date
-    start_date = date(2026, 8, 10)  # Study Day 1 = 2026-08-10 (original start)
+    start_date = date(2026, 8, 25)  # Study Day 1 = 2026-08-25
     today = date.today()
     day_number = (today - start_date).days + 1
     if "DAY_NUMBER" in os.environ:
         day_number = int(os.environ["DAY_NUMBER"])
+    print("ACTUAL DAY_NUMBER IS:", day_number)
         
     run_id = f"run_{datetime.now(timezone.utc).strftime('%Y%m%d_%H%M%S')}_{uuid.uuid4().hex[:6]}"
 
