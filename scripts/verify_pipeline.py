@@ -39,8 +39,8 @@ def get_db_path():
 
 
 def calculate_current_day_number():
-    """Calculates thesis day number starting from 2026-08-10."""
-    start_date = date(2026, 8, 10)
+    """Calculates thesis day number starting from 2026-08-25."""
+    start_date = date(2026, 8, 25)
     today = datetime.now(timezone.utc).date()
     return (today - start_date).days + 1
 

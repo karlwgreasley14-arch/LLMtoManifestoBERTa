@@ -139,6 +139,7 @@ def notify(title, message, is_error=False):
 
 # ── Data Collection Pipeline ────────────────────────────────────────────────────
 def run_collection(db_path=None, prompts_path=None, env_path=None):
+    print("TYPE AT START OF FUNCTION:", type(datetime.now(timezone.utc).date()))
     """
     Executes the LLM Political Alignment Tracker data collection pipeline.
     Iterates through all prompts and models, sending requests to OpenRouter,
@@ -162,7 +163,6 @@ def run_collection(db_path=None, prompts_path=None, env_path=None):
     day_number = (today - start_date).days + 1
     if "DAY_NUMBER" in os.environ:
         day_number = int(os.environ["DAY_NUMBER"])
-    print("ACTUAL DAY_NUMBER IS:", day_number)
         
     run_id = f"run_{datetime.now(timezone.utc).strftime('%Y%m%d_%H%M%S')}_{uuid.uuid4().hex[:6]}"
 
@@ -293,7 +293,7 @@ def run_collection(db_path=None, prompts_path=None, env_path=None):
                         resolved_model = data.get("model", model_slug)
                         provider_returned = "Ollama (Bare-Metal Local)" if backend == "ollama" else (data.get("provider") or provider_pin or "OpenRouter")
                         
-                        usage = data.get("usage") or {}
+                        usage = data.get("usage", {})
                         prompt_tokens = usage.get("prompt_tokens", 0)
                         completion_tokens = usage.get("completion_tokens", 0)
                         cost_usd = usage.get("total_cost") if usage.get("total_cost") is not None else usage.get("cost", 0.0)
